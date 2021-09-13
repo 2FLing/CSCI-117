@@ -24,9 +24,11 @@ ismt (Queue1 xs) = null xs
 addq x (Queue1 xs) = Queue1 (x:xs)
 
 
-remq (Queue1 xs) = if ismt (Queue1 xs) then error "Can't remove an element from an empty queue"
-else (last xs, Queue1 (droplast xs)) where
-    droplast [] =[]
-    droplast [x]=[]
-    droplast xs =init xs
-
+remq (Queue1 xs) = split xs where
+    split  []  =error "can't not process an empty list"
+    split  [x] =(x,Queue1 [])
+    split  xs  = (helper1 xs, Queue1(helper2 xs)) where
+        helper1 [x]=x
+        helper1 (x:xs)=helper1 xs
+        helper2 [x]=[]
+        helper2 (x:xs)=x:helper2 xs 

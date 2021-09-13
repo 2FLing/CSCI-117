@@ -17,10 +17,7 @@ second list is empty and we want to remove an element, we REVERSE the
 elements in the first list and move them to the back, leaving the
 first list empty. We can now process the removal request in the usual way.
 -}
-drop_fst :: [a] -> [a]
-drop_fst [] =[]
-drop_fst [x]=[]
-drop_fst (x:xs)= xs
+
 
 
 data Queue a = Queue2 [a] [a]
@@ -36,6 +33,8 @@ remq q = help q where
     help (Queue2 xs ys)
         | null xs && null ys= error "Can't remove an element from an empty queue"
         | null ys = (last xs, Queue2 [] (drop_fst $ reverse xs))     
-        | otherwise = (head ys, Queue2 xs (drop_fst ys))
-        
-
+        | otherwise = (head ys, Queue2 xs (drop_fst ys)) where
+            drop_fst [] =[]
+            drop_fst [x]=[]
+            drop_fst (x:xs)= xs
+                    
