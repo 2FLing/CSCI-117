@@ -7,9 +7,9 @@ local X in
     X = 1
     Y = pair(1:X 2:X)
     case Y of pair(1:Z 2:W) then 
-      local S in 
+      local S in
         {IntPlus Z W S}
-        skip Full
+       skip Full
       end
       else
         skip Basic
@@ -35,3 +35,35 @@ end
 
 // Sem1.out  
 // [local ["X"] [local ["Y"] [X = 1,local ["EXU1","EXU2"] [EXU1 = X,EXU2 = X,Y = pair(1:EXU1 2:EXU2)],case Y of pair(1:Z 2:W) then [local ["S"] [local ["EXU1","EXU2","EXU3"] [EXU1 = Z,EXU2 = W,EXU3 = S,"IntPlus" "EXU1" "EXU2" "EXU3"],skip/f]] else [skip]]]]
+
+// The whole program does assign an variable x = 1, and then assign another variable y to a pair, y=(1,1)
+// and then sum the first element and the second element of this pair, finally assigns the result to a variable S.
+// S will be 2 (first + second = 1 + 1).
+
+// In the Current Environment, the format is variable name -> variable when it is created.
+// when this program created X and Y, it assigned X to 8 and Y to 9, X=8, Y=9, and they both are unbound, X=((8),unbound), Y=((9),unbound)
+// Then X is assigned to value 1 in the next instruction, X=1. therefore, X is bound to 1, which is ((8),1)
+// In next instruction, Y=pair(1:X, 2:X), the frirst X, "1:X" was assigned to 10 when it be created, and the second X, "2:X" was assigned to 11, when it be created.
+// Therefore, Y is bound to pair(1:10, 2:11). However, those Xs in pair are bound to the very first X, therefore, now in X, we have ((11,10,8),1)
+// So, in Store we have ((9), pair(1:10, 2:11)) for Y.
+// In the next instruction "case Y of pair(1:Z 2:W) then local S in {IntPlus Z W S}", we got new local variable S, and two variable Z, W from outside.
+// S was assigned to 12 when it is created, so, for S we got (12, unbound) at first. Then the program back to case Y of pair(1:Z 2:W) = case pair(1:10, 2:11) of (1:Z, 2:W)
+// So we have  Z= (13, unbound), W = (14, unbound), at first and then Z= (13,10,unbound) W=(14,11,unbound), due to (11,10,8) are bound to 1, (11,10,8,1) which is X.
+// So we unified those variable together. It becomes ((14,13,11,10,8),1), therefore in store we have ((14,13,11,10,8),1) for W, Z, X.
+// back to the instruction, after Local S is "in {IntPlus Z W S}", {IntPlus Z W S} is actually S = Z IntPlus W.
+// due to ((14,13,11,10,8),1), we got bot Z and W have the same value 1. So, S= 1+1 =2.
+// S was (12, unbound) before it is assigned. now we make S a new variable to assigned it value 2. Thus, we got ((15,12),2)
+// In the next instruction, it skips and displays the Environment and store.
+// Therefore, In Environment, we have ("S" -> 12, "Z" -> 10, "W" -> 11, "Y" -> 9, "X" -> 8, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
+// In the order of Environment, we have store as 
+
+// ((15, 12), 2), 
+// ((14, 13, 11, 10, 8), 1),
+// ((9), pair(1:10 2:11)),
+// ((1), Primitive Operation), 
+// ((2), Primitive Operation),
+// ((3), Primitive Operation),
+// ((4), Primitive Operation),
+// ((5), Primitive Operation),
+// ((6), Primitive Operation),
+// ((7), Primitive Operation)
