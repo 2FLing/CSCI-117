@@ -31,6 +31,7 @@ fraction :: Integer -> Integer -> Fraction
 fraction a b = case frac a b of
                 Nothing -> error "Illegal fraction"
                 Just fr -> fr
+                
 -- Num instance for Fraction
 instance Num Fraction where
     negate (Frac a b)= fraction (-a) b

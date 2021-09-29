@@ -32,9 +32,6 @@ addq x q = help x q where
 remq q = help q where
     help (Queue2 xs ys)
         | null xs && null ys= error "Can't remove an element from an empty queue"
-        | null ys = (last xs, Queue2 [] (drop_fst $ reverse xs))     
-        | otherwise = (head ys, Queue2 xs (drop_fst ys)) where
-            drop_fst [] =[]
-            drop_fst [x]=[]
-            drop_fst (x:xs)= xs
+        | not(null xs) && null ys = let (z:zs) = reverse xs in (z, Queue2 [] zs)     
+        | otherwise = let (z:zs) = ys in (z, Queue2 xs zs)
 
