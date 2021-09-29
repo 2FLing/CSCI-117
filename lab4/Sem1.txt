@@ -55,7 +55,7 @@ end
 // S was (12, unbound) before it is assigned. now we make S a new variable to assigned it value 2. Thus, we got ((15,12),2)
 // In the next instruction, it skips and displays the Environment and store.
 // Therefore, In Environment, we have ("S" -> 12, "Z" -> 10, "W" -> 11, "Y" -> 9, "X" -> 8, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
-// In the order of Environment, we have store as 
+// we have store as 
 
 // ((15, 12), 2), 
 // ((14, 13, 11, 10, 8), 1),
