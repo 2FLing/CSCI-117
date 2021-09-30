@@ -46,24 +46,3 @@ end
 // what is does is it takes an argument, and then compare the arg with a local variable X inside.
 // if X is greater then Y, then it displays X, otherwise Y.
 
-// therefore, for procedure Max, we have ((8),Max).
-// Then we have local variable Y, Y is unbound when it is created. so we have ((9),unbound)
-// in nex instruction, we assigned Y a value 3, therefore for Y we have ((9),3)
-// in another layer, we have two defined local variables, X and Y
-// so we have X= ((10),unbound), inner Y=((11),unbound)
-// then instructions assigned X to value 4 and assigned inner Y to value 6
-// so we have X= ((10),4), Y= ((11),6)
-// in the next  instruction, it Skip and displays the Environment and store
-// so we have Current Environment : ("X" -> 10, "Y" -> 11, "Max" -> 8, "Y" -> 9, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
-// by the order of the Environment, we have store:
-// ((10), 4), 
-// ((11), 6),
-// ((8), proc(["X"],[local ["B"] [local ["EXU1","EXU2","EXU3"] [EXU1 = X,EXU2 = Y,EXU3 = B,"GT" "EXU1" "EXU2" "EXU3"],local ["EXU1"] [EXU1 = B,if EXU1 then [skip/BX] else [skip/BY]]]],[("Y",9),("GT",4)])),
-// ((9), 3),
-// ((1), Primitive Operation),
-// ((2), Primitive Operation), 
-// ((3), Primitive Operation),
-// ((4), Primitive Operation),
-// ((5), Primitive Operation),
-// ((6), Primitive Operation),
-// ((7), Primitive Operation)
