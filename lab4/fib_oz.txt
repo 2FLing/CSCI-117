@@ -42,13 +42,15 @@ local X Result Fib in
   skip Browse Result
 end
 
-// Stack : "local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]
-// local [\"EXU1\",\"EXU2\"] [EXU1 = D,EXU2 = F,\"Fib\" \"EXU1\" \"EXU2\"]
-// local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]
-// local [\"EXU1\",\"EXU2\"] [EXU1 = D,EXU2 = F,\"Fib\" \"EXU1\" \"EXU2\"]
-// local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]skip/BResult"
+// Stack :    -----> It is for Fib(3)
+// "local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]  ----> It created three arguments, and assigned E,F,Y to them, then putted them in IntPlus
+// local [\"EXU1\",\"EXU2\"] [EXU1 = D,EXU2 = F,\"Fib\" \"EXU1\" \"EXU2\"]  -----> It created two arguments, and assigned D,F to them, then putted them in Fib
+// local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]  ----> Same as line 46
+// local [\"EXU1\",\"EXU2\"] [EXU1 = D,EXU2 = F,\"Fib\" \"EXU1\" \"EXU2\"]    ------> same as line 47 
+// local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]skip/BResult"  ----> It created three arguments, and assigned E,F,Y to them, then putted them in IntPlus, after finished, run skip Browse Result
 
-// Stack : "local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]
-// local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]skip/BResult"
+// Stack :  ------> It is for Fib(2)
+// "local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]  ---------> It created three arguments, and assigned E,F,Y to them, then putted them in IntPlus
+// local [\"EXU1\",\"EXU2\",\"EXU3\"] [EXU1 = E,EXU2 = F,EXU3 = Y,\"IntPlus\" \"EXU1\" \"EXU2\" \"EXU3\"]skip/BResult" ----> It created three arguments, and assigned E,F,Y to them, then putted them in IntPlus, after finished, run skip Browse Result
 
 // Result : 5
