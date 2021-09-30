@@ -2,7 +2,7 @@
 //    runFull "declarative" "Sem2.txt" "Sem2.out"
 // Explain the resulting store
 
-local Max Y in
+local Max Y in         // Explaination on line 49
   Max = proc {$ X}
     local B in 
         {GT X Y B}
@@ -13,9 +13,9 @@ local Max Y in
         end
     end
   end
-  Y = 3
-  local X Y in 
-    Y = 6
+  Y = 3       // line 52
+  local X Y in  // line 54
+    Y = 6    // line 57
     X = 4
     skip Full
     {Max X}
@@ -46,3 +46,18 @@ end
 // what is does is it takes an argument, and then compare the arg with a local variable X inside.
 // if X is greater then Y, then it displays X, otherwise Y.
 
+// After "local Max Y in ...." executed, there are two variables added to Environment. procedure Max and argument Y 
+// We got "Max" -> ((8), proc) "Y" -> ((9),unbound)
+
+// After "Y=3" executed, program bound Y to value 3, we have "Y" -> ((9),3)
+
+// After " local X Y in...." executed, there are two variables added to Environment. X and another Y (in the inner layer)
+// we have "X" -> ((10),unbound), "Y" -> ((11),unbound)
+
+// After "Y=6" and "X=4" executed, program bound Y to 6 and X to 4, then we have
+// "X" -> ((10),4) "Y" -> ((11),6)
+
+// After skip Full, procedure Max (4) executed.
+// Then in the outer layer, Y is bound to 3. 
+// Thus, inside Max, it compared 4 and 3, and then assigned to B.
+// Finally, X which is 4 is greater then Y, so X : 4 is displayed.

@@ -4,7 +4,7 @@
 
 // the corresponding Explaination is on the line that comment after each instruction
 
-local P1 P2 K1 K2 A1 A2 A3 A4 DB1 DB2 F1 F2 F3 F4 in  // Explain on line 42
+local P1 P2 K1 K2 A1 A2 A3 A4 DB1 DB2 F1 F2 F3 F4 in  // Explaination on line 42
 	P1 = person(kid:K1 age:A1 dob:DB1 food:F3) // line 46
 	P2 = person(kid:K2 age:A2 dob:DB2 food:F4) // line 50
 	K1 = kid(age:A3 food:F1) // line 54
