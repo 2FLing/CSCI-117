@@ -2,7 +2,7 @@
 //    runFull "declarative" "Sem2.txt" "Sem2.out"
 // Explain the resulting store
 
-local Max Y in         // Explaination on line 49
+local Max Y in         // Explaination on line 54
   Max = proc {$ X}
     local B in 
         {GT X Y B}
@@ -22,6 +22,8 @@ local Max Y in         // Explaination on line 49
   end
 end
 
+// Sem2.out [local ["Max","Y"] [Max = proc {$ X} [local ["B"] [local ["EXU1","EXU2","EXU3"] [EXU1 = X,EXU2 = Y,EXU3 = B,"GT" "EXU1" "EXU2" "EXU3"],local ["EXU1"] [EXU1 = B,if EXU1 then [skip/BX] else [skip/BY]]]],Y = 3,local ["X","Y"] [Y = 6,X = 4,skip/f,local ["EXU1"] [EXU1 = X,"Max" "EXU1"]]]]
+
 // Store : 
 // ((10), 4), 
 // ((11), 6),
@@ -40,7 +42,14 @@ end
 // Stack : "local [\"EXU1\"] [EXU1 = X,\"Max\" \"EXU1\"]"
 // X : 4
 
-// Sem2.out [local ["Max","Y"] [Max = proc {$ X} [local ["B"] [local ["EXU1","EXU2","EXU3"] [EXU1 = X,EXU2 = Y,EXU3 = B,"GT" "EXU1" "EXU2" "EXU3"],local ["EXU1"] [EXU1 = B,if EXU1 then [skip/BX] else [skip/BY]]]],Y = 3,local ["X","Y"] [Y = 6,X = 4,skip/f,local ["EXU1"] [EXU1 = X,"Max" "EXU1"]]]]
+// For the Environment, program set up primitive operations, and then add them to environment.
+// Environment: ( "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7 )
+
+// "local Max Y in..." created two variables Max and Y, and putted them in environment
+// Environment: ("Max" -> 8, "Y" -> 9, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
+
+// "local X Y in ..." created two variables X and Y and putted them in environment, there are two "Y"s, but in different layers
+// Environment : ("X" -> 10, "Y" -> 11, "Max" -> 8, "Y" -> 9, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
 
 // In the beginning of this program, it created a procedure Max.
 // what is does is it takes an argument, and then compare the arg with a local variable X inside.

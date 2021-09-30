@@ -4,13 +4,13 @@
 
 // the corresponding Explaination is on the line that comment after each instruction
 
-local X in       // line 46
-  local Y in     // line 48
-    X = 1        // line 50
-    Y = pair(1:X 2:X)     // line 52
-    case Y of pair(1:Z 2:W) then     // line 55
-      local S in                   // line 59
-        {IntPlus Z W S}          // line 59
+local X in       // line 59
+  local Y in     // line 61
+    X = 1        // line 63
+    Y = pair(1:X 2:X)     // line 65
+    case Y of pair(1:Z 2:W) then     // line 68
+      local S in                   // line 72
+        {IntPlus Z W S}          // line 72
        skip Full
       end
       else
@@ -40,6 +40,17 @@ end
 // Current Environment : ("S" -> 12, "Z" -> 10, "W" -> 11, "Y" -> 9, "X" -> 8, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
 // Stack : ""
 
+// For the Environment, program set up primitive operations, and then add them to environment.
+// Environment: ( "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7 )
+
+// then local X and local Y created variable X and variable Y and then add them to environment
+// Environment: ( "Y" -> 9, "X" -> 8, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
+
+// then case Y of pair (1:Z 2:W) created variables Z and W and then add them to environment
+// Environment: ("Z" -> 10, "W" -> 11, "Y" -> 9, "X" -> 8, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
+
+// eventually "local S in.." created variable S, and then add them to environment
+// Environment : ("S" -> 12, "Z" -> 10, "W" -> 11, "Y" -> 9, "X" -> 8, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
 
 // The whole program does assign an variable x = 1, and then assign another variable y to a pair, y=(1,1)
 // and then sum the first element and the second element of this pair, finally assigns the result to a variable S.

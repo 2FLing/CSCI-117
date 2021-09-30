@@ -4,18 +4,20 @@
 
 // the corresponding Explaination is on the line that comment after each instruction
 
-local P1 P2 K1 K2 A1 A2 A3 A4 DB1 DB2 F1 F2 F3 F4 in  // Explaination on line 42
-	P1 = person(kid:K1 age:A1 dob:DB1 food:F3) // line 46
-	P2 = person(kid:K2 age:A2 dob:DB2 food:F4) // line 50
-	K1 = kid(age:A3 food:F1) // line 54
-	K2 = kid(age:A4 food:F2) // line 58
-	A3 = 12 // line 62
-	F2 = spaghetti() // line 65
-	A1 = 54 // line 68
-	DB2 = 1978 // line 71
-	P1 = P2 // line 74
+local P1 P2 K1 K2 A1 A2 A3 A4 DB1 DB2 F1 F2 F3 F4 in  // Explaination on line 48
+	P1 = person(kid:K1 age:A1 dob:DB1 food:F3) // line 52
+	P2 = person(kid:K2 age:A2 dob:DB2 food:F4) // line 56
+	K1 = kid(age:A3 food:F1) // line 60
+	K2 = kid(age:A4 food:F2) // line 64
+	A3 = 12 // line 66
+	F2 = spaghetti() // line 71
+	A1 = 54 // line 74
+	DB2 = 1978 // line 77
+	P1 = P2 // line 80
     skip Full
 end
+
+// Sem3.out [local ["P1","P2","K1","K2","A1","A2","A3","A4","DB1","DB2","F1","F2","F3","F4"] [local ["EXU1","EXU2","EXU3","EXU4"] [EXU1 = K1,EXU2 = A1,EXU3 = DB1,EXU4 = F3,P1 = person(kid:EXU1 age:EXU2 dob:EXU3 food:EXU4)],local ["EXU1","EXU2","EXU3","EXU4"] [EXU1 = K2,EXU2 = A2,EXU3 = DB2,EXU4 = F4,P2 = person(kid:EXU1 age:EXU2 dob:EXU3 food:EXU4)],local ["EXU1","EXU2"] [EXU1 = A3,EXU2 = F1,K1 = kid(age:EXU1 food:EXU2)],local ["EXU1","EXU2"] [EXU1 = A4,EXU2 = F2,K2 = kid(age:EXU1 food:EXU2)],A3 = 12,F2 = spaghetti(),A1 = 54,DB2 = 1978,P1 = P2,skip/f]]
 
 // Store :
 // ((31, 18, 33, 19), spaghetti()), ------> united kids food
@@ -37,7 +39,11 @@ end
 // Current Environment : ("P1" -> 8, "P2" -> 9, "K1" -> 10, "K2" -> 11, "A1" -> 12, "A2" -> 13, "A3" -> 14, "A4" -> 15, "DB1" -> 16, "DB2" -> 17, "F1" -> 18, "F2" -> 19, "F3" -> 20, "F4" -> 21, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
 // Stack : ""
 
-//Sem3.out [local ["P1","P2","K1","K2","A1","A2","A3","A4","DB1","DB2","F1","F2","F3","F4"] [local ["EXU1","EXU2","EXU3","EXU4"] [EXU1 = K1,EXU2 = A1,EXU3 = DB1,EXU4 = F3,P1 = person(kid:EXU1 age:EXU2 dob:EXU3 food:EXU4)],local ["EXU1","EXU2","EXU3","EXU4"] [EXU1 = K2,EXU2 = A2,EXU3 = DB2,EXU4 = F4,P2 = person(kid:EXU1 age:EXU2 dob:EXU3 food:EXU4)],local ["EXU1","EXU2"] [EXU1 = A3,EXU2 = F1,K1 = kid(age:EXU1 food:EXU2)],local ["EXU1","EXU2"] [EXU1 = A4,EXU2 = F2,K2 = kid(age:EXU1 food:EXU2)],A3 = 12,F2 = spaghetti(),A1 = 54,DB2 = 1978,P1 = P2,skip/f]]
+// For the Environment, program set up primitive operations, and then add them to environment.
+// Environment: ( "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7 )
+
+// "local P1 P2 K1 K2 A1 A2 A3 A4 DB1 DB2 F1 F2 F3 F4 in ...." created those variables and add them to environment
+// Environment : ("P1" -> 8, "P2" -> 9, "K1" -> 10, "K2" -> 11, "A1" -> 12, "A2" -> 13, "A3" -> 14, "A4" -> 15, "DB1" -> 16, "DB2" -> 17, "F1" -> 18, "F2" -> 19, "F3" -> 20, "F4" -> 21, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
 
 // After "local P1 P2 K1 K2 A1 A2 A3 A4 DB1 DB2 F1 F2 F3 F4 in" executed, we have
 // "P1" -> ((8),unbound)  "P2" -> ((9),unbound) "K1" -> ((10),unbound) "K2" -> ((11),unbound) "A1" -> ((12),unbound) "A2" -> ((13),unbound) "A3" -> ((14),unbound)
