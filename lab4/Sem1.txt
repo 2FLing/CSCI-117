@@ -40,6 +40,7 @@ end
 // Current Environment : ("S" -> 12, "Z" -> 10, "W" -> 11, "Y" -> 9, "X" -> 8, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
 // Stack : ""
 
+// **************************************************************************************************************************************************************
 // For the Environment, program set up primitive operations, and then add them to environment.
 // Environment: ( "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7 )
 
@@ -60,7 +61,7 @@ end
 
 // After "local Y in ..." executed, we have "Y" -> ((9),unbound)
 
-// After "X=1" executed, we have "X" -> ((8),unbound)
+// After "X=1" executed, we have "X" -> ((8),1)
 
 // After "Y = pair(1:X 2:X)" executed, we have "Y" -> ((9), pair (1:10,2:11))
 // We also have "pair.1" -> ((10),1), "pair.2" -> ((11),1), "X" -> ((11,10,8),1)

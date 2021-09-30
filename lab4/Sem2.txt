@@ -42,6 +42,7 @@ end
 // Stack : "local [\"EXU1\"] [EXU1 = X,\"Max\" \"EXU1\"]"
 // X : 4
 
+// ********************************************************************************************************************************************************************
 // For the Environment, program set up primitive operations, and then add them to environment.
 // Environment: ( "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7 )
 
