@@ -2,16 +2,18 @@
 //    runFull "declarative" "Sem3.txt" "Sem3.out"
 // Explain the resulting store
 
-local P1 P2 K1 K2 A1 A2 A3 A4 DB1 DB2 F1 F2 F3 F4 in
-	P1 = person(kid:K1 age:A1 dob:DB1 food:F3)
-	P2 = person(kid:K2 age:A2 dob:DB2 food:F4)
-	K1 = kid(age:A3 food:F1)
-	K2 = kid(age:A4 food:F2)
-	A3 = 12
-	F2 = spaghetti()
-	A1 = 54
-	DB2 = 1978
-	P1 = P2
+// the corresponding Explaination is on the line that comment after each instruction
+
+local P1 P2 K1 K2 A1 A2 A3 A4 DB1 DB2 F1 F2 F3 F4 in  // Explain on line 42
+	P1 = person(kid:K1 age:A1 dob:DB1 food:F3) // line 46
+	P2 = person(kid:K2 age:A2 dob:DB2 food:F4) // line 50
+	K1 = kid(age:A3 food:F1) // line 54
+	K2 = kid(age:A4 food:F2) // line 58
+	A3 = 12 // line 62
+	F2 = spaghetti() // line 65
+	A1 = 54 // line 68
+	DB2 = 1978 // line 71
+	P1 = P2 // line 74
     skip Full
 end
 
@@ -37,19 +39,37 @@ end
 
 //Sem3.out [local ["P1","P2","K1","K2","A1","A2","A3","A4","DB1","DB2","F1","F2","F3","F4"] [local ["EXU1","EXU2","EXU3","EXU4"] [EXU1 = K1,EXU2 = A1,EXU3 = DB1,EXU4 = F3,P1 = person(kid:EXU1 age:EXU2 dob:EXU3 food:EXU4)],local ["EXU1","EXU2","EXU3","EXU4"] [EXU1 = K2,EXU2 = A2,EXU3 = DB2,EXU4 = F4,P2 = person(kid:EXU1 age:EXU2 dob:EXU3 food:EXU4)],local ["EXU1","EXU2"] [EXU1 = A3,EXU2 = F1,K1 = kid(age:EXU1 food:EXU2)],local ["EXU1","EXU2"] [EXU1 = A4,EXU2 = F2,K2 = kid(age:EXU1 food:EXU2)],A3 = 12,F2 = spaghetti(),A1 = 54,DB2 = 1978,P1 = P2,skip/f]]
 
-// First, the program sets up it's Primitive Operation through 1-7
-// As the definition, P1 become the first local variable. We have ((8),Unbound) for P1 in store
-// P2 become the second local variable. We have ((9),Unbound) for P2, and so on for the rest of local variables.
-// Then we have "P1 = person(kid:K1 age:A1 dob:DB1 food:F3)", which assigned a record value to P1
-// but inside the record, those kid, K1, age, A1...etc are unbound. Such as, for kid:A1, we have ((22,11),unbound) in store.
-// Thus, after "P1 = person(kid:K1 age:A1 dob:DB1 food:F3)", we have P1= ((8),person( ((22,10),unbound) ((23,12),unbound) ((24,16),unbound) ((25,20),unbound) ) in store
-// Same as the P2, for P2, we have P2= ((9),person( ((26,11),unbound) ((27,13),unbound) ((28,17),unbound) ((29,21),unbound) ) in store
-// For "K1 = kid(age:A3 food:F1)", we bound K1 to a record value "Kid", so we have K1 = ((10), kid (((30,14),unbound) ((31,18),unbound)) ) in store
-// Samething for K2, we have K2 = ((11), kid (((32,15),unbound) ((33,19),unbound)) ) in store
-// For the next instruction, "A3 = 12", we bound A3 to 12, and A3 and K1.age is united,so we have ((30,14),12) in store
-// For the next instruction,"F2 = spaghetti()", we bound F2 to spaghetti(), and F2 and K2.food is united, so we have ((33,19), spaghetti()) in store
-// For the next instruction, "A1 = 54", we bound A1 to 54, and A1 and P1.age is united, so we have ((23,12),54) in store
-// For the next instruction,  "DB2 = 1978", we bound DB2 to 1978, and DB2 and P2.dob is united, so we have ((28,17),1978)
+// After "local P1 P2 K1 K2 A1 A2 A3 A4 DB1 DB2 F1 F2 F3 F4 in" executed, we have
+// "P1" -> ((8),unbound)  "P2" -> ((9),unbound) "K1" -> ((10),unbound) "K2" -> ((11),unbound) "A1" -> ((12),unbound) "A2" -> ((13),unbound) "A3" -> ((14),unbound)
+// "A4" -> ((15),unbound) "DB1" -> ((16),unbound) "DB2" -> ((17),unbound) "F1" -> ((18),unbound) "F2" -> ((19),unbound) "F3" -> ((20),unbound) "F4" -> ((21),unbound)
+
+// After "P1 = person(kid:K1 age:A1 dob:DB1 food:F3)" executed, we have
+// "P1" -> ((8), person (kid: 10 age: 12 dob: 16 food:20))
+// we also have "P1.kid" -> ((22,10), unbound) "P1.age" -> ((23,12),unbound) "P1.dob" -> ((24,16),unbound) "P1.food" -> ((25,20),unbound)
+
+//After "P2 = person(kid:K2 age:A2 dob:DB2 food:F4)" executed, we have
+// "P2" -> ((9), person (kid: 11 age: 13 dob: 17 food:21))
+// we also have "P2.kid" -> ((26,11), unbound) "P2.age" -> ((27,13),unbound) "P2.dob" -> ((28,17),unbound) "P2.food" -> ((29,21),unbound)
+
+// After "K1 = kid(age:A3 food:F1)" executed, we have
+//  "K1" -> ((10), kid (age:A3 food:F1))
+// we also have "k1.age" -> ((30,14),unbound), "k1.food"-> ((31,18),unbound)
+
+// After "K2 = kid(age:A4 food:F2)" executed, we have
+//  "K2" -> ((11), kid (age:A4 food:F2))
+// we also have "k2.age" -> ((32,15),unbound), "k2.food"-> ((33,19),unbound)
+
+// After "A3 = 12" executed, we have
+// "A3" -> ((14),12) "k1.age" -> ((30,14),12)
+
+// "After "F2 = spaghetti()" executed, we have
+// "F2" -> ((19),spaghetti()), we also have "K2.food" -> ((33,19), spaghetti())
+
+// "After "A1 = 54" executed, we have
+// "A1" -> ((12),54), we also have "P1.age" -> ((23,12), 54)
+
+// "After "DB2 = 1978" executed, we have
+// "DB2" -> ((17),1978), we also have "P2.dob" -> ((28,17), 1978)
 
 // united person
 // Before the "P1 = P2" execute, we have:
