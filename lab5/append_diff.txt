@@ -1,0 +1,14 @@
+// Append with difference lists
+local L1 End1 L2 End2 H1 T1 H2 T2 LNew in
+   L1 = ((1|(2|End1)) # End1)        // List [1,2] as a difference list
+   L2 = ((3|(4|End2)) # End2)        // List [3,4] as a difference list
+   
+   L1 = (H1 # T1)                    // Pattern match, name head and tail
+   L2 = (H2 # T2)                    // Pattern match, name head and tail
+   T1 = H2                           // Bind/unify tail of L1 with head of L2
+
+   LNew = (L1 # T2)                  // Build a new difference list
+   
+   skip Browse LNew
+   skip Full
+end
