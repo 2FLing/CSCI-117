@@ -1,0 +1,45 @@
+ runFull "declarative" "append_diff.txt" "append_diffOut.txt" 
+LNew : '#'(1:39 2:40)
+
+Out1 : [ 1  2  3  4 ]
+
+Store : ((20, 71, 66, 61, 56, 53, 51, 72), '|'(1:73 2:74)),
+((74, 67), '|'(1:68 2:69)),
+((73, 47), 1),
+((70, 48), nil()), 
+((69, 62), '|'(1:63 2:64)),
+((68, 45), 2),
+((65, 46), '|'(1:47 2:48)),
+((64, 57), '|'(1:58 2:59)),
+((63, 43), 3),
+((60, 44), '|'(1:45 2:46)), 
+((59, 54), nil()),
+((58, 41), 4),
+((55, 42), '|'(1:43 2:44)),
+((52, 49, 18), '|'(1:41 2:42)),
+((50), proc(["Xs","Y","Y1","EXU2"],[case Xs of nil() then [Y = Y1,EXU2 = Y] else [case Xs of '|'(1:X 2:Xr) then [local ["EXU3","EXU4","EXU5"] [EXU3 = Xr,EXU4 = Y,local ["EXU6","EXU7"] [EXU6 = X,EXU7 = Y1,EXU5 = '|'(1:EXU6 2:EXU7)],"ReverseD" "EXU3" "EXU4" "EXU5" "EXU2"]] else [skip]]],[("ReverseD",50)])),
+((40, 28, 32, 11, 37, 15), Unbound),
+((39, 8, 35), '#'(1:21 2:22)), 
+((22, 26, 9, 34, 13, 27, 36, 14), '|'(1:29 2:30)),
+((10, 38), '#'(1:27 2:28)),
+((21, 33, 12), '|'(1:23 2:24)),
+((31), 4),
+((29), 3),
+((30), '|'(1:31 2:32)), 
+((25), 2),
+((23), 1),
+((24), '|'(1:25 2:26)),
+((16), '#'(1:39 2:40)),
+((17), proc(["Xs","EXU1"],[local ["ReverseD","Out"] [ReverseD = proc {$ Xs Y Y1 EXU2} [case Xs of nil() then [Y = Y1,EXU2 = Y] else [case Xs of '|'(1:X 2:Xr) then [local ["EXU3","EXU4","EXU5"] [EXU3 = Xr,EXU4 = Y,local ["EXU6","EXU7"] [EXU6 = X,EXU7 = Y1,EXU5 = '|'(1:EXU6 2:EXU7)],"ReverseD" "EXU3" "EXU4" "EXU5" "EXU2"]] else [skip]]],local ["EXU2","EXU3","EXU4"] [EXU2 = Xs,EXU3 = Out,EXU4 = nil(),"ReverseD" "EXU2" "EXU3" "EXU4" "Out"],EXU1 = Out]],[])), 
+((19), Unbound),
+((1), Primitive Operation),
+((2), Primitive Operation),
+((3), Primitive Operation),
+((4), Primitive Operation),
+((5), Primitive Operation), 
+((6), Primitive Operation),
+((7), Primitive Operation)
+
+Mutable Store: Empty
+Current Environment : ("L1" -> 8, "End1" -> 9, "L2" -> 10, "End2" -> 11, "H1" -> 12, "T1" -> 13, "H2" -> 14, "T2" -> 15, "LNew" -> 16, "Reverse" -> 17, "L3" -> 18, "L4" -> 19, "Out1" -> 20, "IntPlus" -> 1, "IntMinus" -> 2, "Eq" -> 3, "GT" -> 4, "LT" -> 5, "Mod" -> 6, "IntMultiply" -> 7)
+Stack : ""
