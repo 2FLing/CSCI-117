@@ -46,4 +46,4 @@ end
 // {ReverseD [2,1] Out [3,4]} ------> {ReverseD [1] Out [2,3,4]}
 // {ReverseD [1] Out [2,3,4]} ------> {ReverseD [] Out [1,2,3,4]}
 // {ReverseD [] Out [1,2,3,4]} ------> for the [] case, ReverseD bound [1,2,3,4] to Out, Out = [1,2,3,4] 
-// Return [1,2,3,4]
+// Return Out
