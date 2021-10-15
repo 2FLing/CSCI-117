@@ -1,0 +1,47 @@
+local B in
+  thread            // S1
+    B=true          // T1
+  end
+  thread            // S2
+    B=false         // T2
+  end
+  if B then         // S3
+    skip Browse B   // S3.1
+  end
+end
+
+S1 T1 S2 T2 S3 ---- displays nothing  
+// thread1 ran first, and B = true, so B is bound to true. and then thread2 ran after, but B is already bound to ture, so B can't be bound to false. so unification error happens.
+
+S1 T1 S2 S3 S3.1 T2 ----- displays true
+// thread1 ran first, and B = true, so B is bound to true. and then thread2 ran after, but B is already bound to ture, so B can't be bound to false. so unification error happens.
+
+S1 S2 T1 T2 S3  ---- displays nothing
+// thread1 ran first, and B = true, so B is bound to true. and then thread2 ran after, but B is already bound to ture, so B can't be bound to false. so unification error happens.
+
+S1 S2 T2 S3 T1 ---- displays nothing
+// thread2 ran first, and B = false, so B is bound to false. and then thread1 ran after, but B is already bound to false, so B can't be bound to true. so unification error happens.
+
+S2 S1 T1 S3 S3.1 T2 ----- displays true
+// thread1 ran first, and B = true, so B is bound to true. and then thread2 ran after, but B is already bound to ture, so B can't be bound to false. so unification error happens.
+
+S1 S2 T1 S3 S3.1 T2 ----- displays true
+// thread1 ran first, and B = true, so B is bound to true. and then thread2 ran after, but B is already bound to ture, so B can't be bound to false. so unification error happens.
+
+S2 S1 T2 S3 T1 ---- displays nothing
+// thread2 ran first, and B = false, so B is bound to false. and then thread1 ran after, but B is already bound to false, so B can't be bound to true. so unification error happens.
+
+S1 S2 T2 T1 S3 S3.1 ----- displays true
+// thread2 ran first, and B = false, so B is bound to false. and then thread1 ran after, but B is already bound to false, so B can't be bound to true. so unification error happens.
+
+S2 T2 S1 T1 S3 S3.1 ----- displays true
+// thread2 ran first, and B = false, so B is bound to false. and then thread1 ran after, but B is already bound to false, so B can't be bound to true. so unification error happens.
+
+S2 S1 T2 T1 S3 S3.1 ----- displays true
+// thread2 ran first, and B = false, so B is bound to false. and then thread1 ran after, but B is already bound to false, so B can't be bound to true. so unification error happens.
+
+S2 S1 T1 T2 S3 S3.1 ----- displays true
+// thread1 ran first, and B = true, so B is bound to true. and then thread2 ran after, but B is already bound to ture, so B can't be bound to false. so unification error happens.
+
+S2 T2 S1 S3 T1 ----- displays nothing
+// thread2 ran first, and B = false, so B is bound to false. and then thread1 ran after, but B is already bound to false, so B can't be bound to true. so unification error happens.

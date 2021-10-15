@@ -1,0 +1,33 @@
+local Fib X Result in
+  Fib = fun {$ In}
+    if (In == 0) then 
+      1
+    elseif (In == 1) then
+      1
+    else
+      (thread {Fib (In-1)} end + thread {Fib (In - 2)} end)
+    end
+  end
+  X = 3 // (25.71 secs, 3,371,539,608 bytes)
+  Result = {Fib X}
+  skip Browse Result
+end
+
+// (a)
+// fib1_sugar X = 15 (37.96 secs, 13,435,508,912 bytes) 
+// fib2_sugar X = 1800 (57.24 secs, 20,367,039,712 bytes)
+// fib1_thread X = 13 (25.71 secs, 3,371,539,608 bytes)
+// For fib1_sugar, The maxium X within one minute is 15. and 
+// for fib2_sugar, the maxium X is 1800, for fib1_thread, the 
+// maxium X is 13.
+// Why is that result is because, fib1_sugar and fib1_thread
+// are using recursion without tail call, and there are lots of repetitive calculations
+// as the progress going through. fib2_sugar is using recursion with tail call and accmulator.
+// so there is no repetitive calculations in fib2_sugar. Thus fib2_sugar is more efficient than fib1_sugar and fib1_thread
+
+// (b)
+// num_of_threads n
+//  | n == 0 = 0
+//  | n == 1 = 0
+//  | n == 2 = 1
+//  | otherwise =  num_of_threads(n-2)+num_of_threads(n-1)+2
