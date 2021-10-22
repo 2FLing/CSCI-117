@@ -1,0 +1,53 @@
+local Generate Zip Take Times Merge Hamming H X Y Z V S V1 F1 in
+
+
+    Take = fun {$ N F}
+        if (N == 0) then 
+            nil
+        else
+            (X#G) = {F} in
+            (X|{Take (N-1) G})
+        end
+    end
+    
+    Times = fun {$ N H }
+        fun {$}
+            (X#G) = {H} in
+            ((X*N)#{Times N G})
+        end
+    end
+
+    Merge = fun {$ Xs Ys}
+        fun {$}
+            (X#G) = {Xs}
+            (Y#Z) = {Ys} in
+            if (X < Y) then
+                (X#{Merge G Ys})
+            else
+                if (X > Y) then
+                    (Y#{Merge Xs Z})
+                else
+                    (X#{Merge G Z})
+                end
+            end
+        end
+    end
+    
+    Generate = fun {$ N} 
+        fun {$} (N#{Generate (N+1)}) end
+    end
+            
+    Hamming = fun {$ N}
+        fun {$}
+            (X#G) = {N} in
+            (1#{Merge {Times 2 {Hamming G}} {Merge {Times 3 {Hamming G}} {Times 5 {Hamming G}}}})
+        end
+    end
+
+    X = {Generate 1}
+    Y = {Hamming X }
+    V = {Take 10 Y}
+    skip Browse V
+end
+
+//  runFull "declarative" "part1.txt" "part1.out"

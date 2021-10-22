@@ -1,0 +1,1 @@
+[local ["X","Z","Y"] [X = proc {$ EXU1} [EXU1 = 3],local ["EXU1","EXU2"] [EXU1 = X,EXU2 = Z,"ByNeed" "EXU1" "EXU2"],local ["EXU1","EXU2"] [EXU1 = Z,EXU2 = 1,"IntPlus" "EXU1" "EXU2" "Y"],skip/BY]]

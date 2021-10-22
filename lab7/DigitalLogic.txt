@@ -1,0 +1,6 @@
+local X Z Y in
+   ByNeed proc{$A} A = 111 end Y
+   skip Browse Y
+end
+
+//runFull "declarative" "DigitalLogic.txt" "DigitalLogic.out"
