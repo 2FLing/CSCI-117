@@ -455,9 +455,21 @@ instance Ord ExtInt where
 bst :: Tree Int -> Bool
 bst Empty=True
 bst (Node a Empty Empty)=True
-bst (Node a b c)= bsth b a == LT && bsth c a ==GT && bst b && bst c where
+bst (Node a b c)= bsth b a == LT && bsth c a ==GT && bst b && bst c && allless b a && allgreate c a where
   bsth Empty x= GT
   bsth (Node a b c) x=compare a x 
+
+allless :: Tree Int  -> Int -> Bool
+allless Empty x = True
+allless (Node a Empty b) x = a<x && allless b x
+allless (Node a b Empty) x = a<x && allless b x
+allless (Node a b c) x = a < x && allless b x && allless c x 
+
+allgreate :: Tree Int -> Int -> Bool
+allgreate Empty x = True
+allgreate (Node a Empty b) x = a>x && allgreate b x
+allgreate (Node a b Empty) x = a>x && allgreate b x
+allgreate (Node a b c) x = a > x && allgreate b x && allgreate c x 
 
 --  bst (Node 5 (Node 3 (Node 1 Empty Empty) (Node 4 Empty Empty)) (Node 8 (Node 7 Empty Empty) (Node 9 Empty Empty)))
 -- True
@@ -467,7 +479,7 @@ bst (Node a b c)= bsth b a == LT && bsth c a ==GT && bst b && bst c where
 
 bst2 :: Tree2 Int -> Bool
 bst2 (Leaf a)= True
-bst2 (Node2 a b c)= bst2h b a==LT && bst2h c a == GT && bst2 b && bst2 c where
+bst2 (Node2 a b c)= bst2h b a==LT && bst2h c a == GT && alless2 b a&& allgreat2 c a&&bst2 b && bst2 c where
   bst2h (Leaf a) x=compare a x 
   bst2h (Node2 a b c) x= compare a x
 
@@ -475,3 +487,11 @@ bst2 (Node2 a b c)= bst2h b a==LT && bst2h c a == GT && bst2 b && bst2 c where
   -- True
   -- bst2 (Node2 5 (Node2 3 (Leaf 1) (Leaf 4)) (Node2 8 (Leaf 17) (Leaf 9)))
  -- False
+
+alless2 :: Ord t => Tree2 t -> t -> Bool
+alless2 (Leaf e) x = e<x
+alless2 (Node2 a b c) x = a<x && alless2 b x && alless2 c x  
+
+allgreat2 :: Ord t => Tree2 t -> t -> Bool
+allgreat2 (Leaf e) x = e>x
+allgreat2 (Node2 a b c) x = a>x && allgreat2 b x && allgreat2 c x  
