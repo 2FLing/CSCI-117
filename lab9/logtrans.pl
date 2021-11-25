@@ -30,7 +30,6 @@ relClause(S,P1,X,X,P1).
 % input = sentence([every,man,who,loves,a,child,knows,a,woman,who,lives],[],P).
 % output = P = all(_1752, imply(and(man(_1752), exists(_1774, and(child(_1774), loves(_1752, _1774)))), exists(_1796, and(and(woman(_1796), lives(_1796)), knows(_1752, _1796)))))
 % output = P = all(X,imply(and(man(X),exists(Y,and(child(Y),loves(X,Y)))),exists(Z,and(and(woman(Z),lives(Z),knows(X,Y)))).
-% 
 
 % input = sentence([a,man,who,loves,a,woman,who,knows,every,child,knows,luke],[],P).
 % output = P = exists(_1758, and(and(man(_1758), exists(_1780, and(and(woman(_1780), all(_1802, imply(child(_1802), knows(_1780, _1802)))), loves(_1758, _1780)))), knows(_1758, luke())))
